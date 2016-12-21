@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+}
+
+.container {
+    margin: auto;
+    padding: 15px;
+    width: 850px;
+    background-color: #dddfd4;
+}
+
+.header {
+    padding: 10px;
+    background-color: #38b0ad;
+}
+    .header img, .header h1, nav {
+        display: inline-block;
+        vertical-align: top;
+    }
+    .header img {
+        width: 40px;
+        background-color: none;
+    }
+    .header h1 {
+        margin: 5px 30px 0 0;
+        color: #010303;
+    }
+    nav {
+        margin: 15px 0;
+    }
+    nav a {
+        margin-left: 15px;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+.main_content {
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px 30px 0 15px;
+    background-color: #fbe691;
+    color: #cbd0c6;
+}
+    .git_init, .git_add, .git_status, .git_commit, .git_remote_add, .git_push {
+        display: inline-block;
+        vertical-align: top;
+        padding: 15px;
+        background-color: #153f43;
+    }
+    .what_is, .git_init, .git_add, .git_commit {
+        margin-right: 30px;
+    }
+    .what_is {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 15px;
+        height: 480px;
+        background-color: #153f43;
+        width: 200px;
+    }
+    .what_is h2 {
+        margin: 20px 0 15px -10px;
+    }
+    .git_init, .git_add, .git_status {
+        height: 125px;
+        width: 120px;
+    }
+    .git_commit, .git_remote_add {
+        margin: -295px 0 0 0;
+        width: 213px;
+    }
+    .git_commit {
+        margin-left: 267px;
+        margin-right: 30px;
+    }
+    .git_push {
+        margin: -140px 0 0 267px;
+        width: 495px;
+    }
+    h3 {
+        margin-left: -10px;
+    }
+    .teal_text {
+        color: #4cd8c8;
+    }
+
+.footer {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 5px;
+    padding: 30px 200px;
+    width: 450px;
+    background-color: #38b0ad;
+}
+    .footer a:link {
+        color: #4f3694
+    }

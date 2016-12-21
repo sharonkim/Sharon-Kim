@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: serif;
+}
+
+.container {
+    width: 970px;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 0 10px;
+    background: linear-gradient(#eff1ed, #ffffff)
+}
+    .header img {
+        height: 100px;
+        width: 200px;
+        margin-bottom: 10px;
+    }
+    h2 {
+        display: inline-block;
+        vertical-align: top;
+        margin: 60px 40px 0 250px;
+        font-weight: 900;
+        text-shadow: 0.5px 0 #000000;
+        text-align: right;
+    }
+    table, tr, td {
+        height: 30px;
+        width: 968px;
+        margin: auto;
+        padding 10px;
+        border: 2px solid black;
+        border-collapse: collapse;
+        font-size: 0.95em;
+        font-weight: 400;
+        text-align: center;
+        background-color: #f6f7f5;
+    }
+
+    td {
+        padding-left:  20px;
+        padding-right: 20px;
+    }
+        td:last-child{
+            width: 40px;
+        }
+
+.main_content {
+    width: 954px;
+    margin: auto;
+    padding: 15px 0 15px 15px;
+    background: #3b334b; /*if gradient not supported in browser*/
+    background: radial-gradient(#765b5f, #3b334b);
+}
+    .main_content img {
+        height: 255px;
+        width: 475px;
+        vertical-align: top;
+        margin-right: 15px;
+        border: 8px solid #c0c0c0;
+    }
+
+.database_definition {
+    display: inline-block;
+    vertical-align: top;
+    width: 400px;
+    color: #000000;
+}
+    .database_definition h4 {
+        padding: 6px 5px;
+        background: #c9c6c9; /*if gradient not supported in browser*/
+        background: linear-gradient(#c9c6c9, #868492, #c9c6c9);
+    }
+    #subtitle {
+        vertical-align: top;
+        padding: 5px 10px;
+        font-size: 1em;
+        background: #f2fcfe; /*if gradient not supported in browser*/
+        background: linear-gradient(-90deg, #daccd9, #f2fcfe);
+    }
+    .database_definition p {
+        padding: 5px 10px;
+        background: #f2fcfe; /*if gradient not supported in browser*/
+        background: linear-gradient(-90deg, #daccd9, #f2fcfe);
+    }
+
+.divider {
+    height: 20px;
+}
+    .divider img {
+        height: 13px;
+        width: 11px;
+        margin: 3px 5px 5px 795px;
+        vertical-align: middle;
+        border: none;
+    }
+    .divider p {
+        margin-top: 5px;
+        font-size: 0.5em;
+        font-stretch: ultra-expanded;
+        color: #4a85c8;
+    }
+
+.info-box  {
+    display: inline-block;
+    vertical-align: top;
+    width: 215px;
+    margin-top: 5px;
+    margin-right: 12px;
+    background: #fbfcfd; /*if gradient not supported in browser*/
+    background: linear-gradient(#99a8c2, #fbfcfd);
+}
+    .info-box h4   {
+        padding: 6px 5px;
+        background: #c9c6c9; /*if gradient not supported in browser*/
+        background: linear-gradient(#c9c6c9, #868492, #c9c6c9);
+    }
+    .info-box img{
+        display: block;
+        vertical-align: top;
+        height: 125px;
+        width: 100%;
+        border: none;
+    }
+    .info-box div {
+        background: #fbfcfd; /*if gradient not supported in browser*/
+        background: linear-gradient(#99a8c2, #fbfcfd);
+    }
+    .info-box p {
+        height: 300px;
+        padding: 15px 10px;
+        color: black;
+    }
+
+.button {
+    display: inline-block;
+    height: 30px;
+    width: 100px;
+    margin: 0 20px 20px 90px;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: #5c729c;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 500;
+    color: #ffffff;
+}
+.button1 {
+    box-shadow: 0 8px 6px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
