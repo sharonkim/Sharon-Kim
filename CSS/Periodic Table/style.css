@@ -1,69 +1,80 @@
 * {
+    vertical-align: baseline;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    text-align: center;
 }
 
 .container {
-    padding: 10px 10px 15px 10px;
     margin: auto;
     width: 970px;
+    overflow: auto;
     background: #eeeeee;
 }
 
-.y-axis, .x-axis {
-    /*display: inline-block;*/
-    vertical-align: top;
-    border: none;
-    column-width: 40px;
-    word-wrap: break-word;
-    border: 1px dotted green;
+ul {
+    list-style: none;
+    float: left;
+}
+ul li {
+    height: 41px;
+    width: 41px;
+    border: 1px solid grey;
+    margin: 1px;
+}
+
+.clear {
+    clear: both;
+}
+
+#table {
+    float: right;
+    width: 854px;
+}
+
+#period {
+    float: left;
+}
+
+#group, #period, #series {
     color: red;
-    font-size: 0.8em;
-    text-align: center;
 }
-    .y-axis {
-        display: table-row;
-        width: auto;
+    #group li, #period li {
+        height: 23px;
+        width: 23px;
+        padding: 10px;
+        border: none;
+        list-style: none;
     }
-    .x-axis {
-        display: table-column;
-    }
-
-    .blue, .pink, .yellow, .green {
-        display: inline-block;
-        vertical-align: bottom;
-    }
-    .blue td, .pink td, .yellow td, .green td {
-    height: 40px;
-    width: 40px;
-    border: 1px solid black;
-    word-wrap: break-word;
-    text-align: center;
-}
-    .blue td {
-        background: #689bff;
-    }
-
-    .pink td {
-        background: #fd9a98;
-    }
-
-    .yellow td {
-        background: #fecb00;
-    }
-
-    .green td {
-        background: #1fca21;
+    #group li {
+        display: inline;
+        float: left;
     }
 
 h3 {
-    color: #3618a4;
-}
-p {
-    font-size: 0.5em;
+    color: #1a16a3
 }
 
-.blank {
-    visibility: hidden;
+.blue, #first_pink, #space, .pink, .yellow, #last_yellow {
+    display: inline-block;
+    vertical-align: bottom;
 }
+    .blue li, .pink li, .yellow li, .green li {
+        margin: 1px;
+        height: 41px;
+        width: 41px;
+        border: 1px solid black;
+    }
+    .blue li {
+        background: #689bff;
+    }
+    .pink li {
+        background: #fd9a98;
+    }
+    .yellow li {
+        background: #fecb00
+    }
+    #first_pink, #space {
+        margin-left: 12px;
+    }
