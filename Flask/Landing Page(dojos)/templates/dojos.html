@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Landing Page(dojos)</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <img src="{{ url_for('static', filename='img/ninja.png')}}" alt="ninja border">
+                <h1>Ninja Portal</h1>
+                <img src="{{ url_for('static', filename='img/ninja_rev.png')}}" alt="ninja border">
+            </header>
+            <form action="/success" method="post">
+
+                <label for="alias">Alias:</label>
+                <input class="form_field" type="text" id="alias" name="alias">
+
+                <label for="country">Country:</label>
+                <input class="form_field" type="text" id="country" name="country">
+
+                <label for="weapons">Weaponry Skills:</label>
+                <textarea rows="20" cols="80" id="weapons" name="weapons" placeholder="  ex. shuriken, kunai, tekkokagi, etc."></textarea>
+
+                <label class="skills" for="skill">Skill Level:</label>
+                    <label class="level" for="genin">Genin(下忍)</label>
+                        <input class="radio" type="radio" name="skill" value="genin">
+                    <label class="level" for="chūnin">Chūnin(中忍)</label>
+                        <input class="radio" type="radio" name="skill" value="chūnin">
+                    <label class="level" for="jōnin">Jōnin(上忍)</label>
+                        <input class="radio" type="radio" name="skill" value="jōnin">
+                    <label for="email" value="email">Email:</label>
+                        <input
+                        class="email_field" type="text" id="email" name="email" placeholder="   ex. shadow@ninja.com">
+                <button type="submit">Send</button>
+                <img src="{{ url_for('static', filename='img/dojo-logo.png') }}" alt="dojo logo">
+            </form>
+        </div>
+    </body>
+</html>

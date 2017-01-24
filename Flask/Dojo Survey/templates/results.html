@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dojo Survey Results</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css')}}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('submit').click(function() {
+                    location.href('http://localhost:5000/')
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="survey_results">
+            <h3>Submitted Information</h3>
+            <label for="name">Name:</label>
+                <p>{{name}}</p>
+            <label for="dojo">Dojo Location:</label>
+                <p>{{dojo}}</p>
+            <label for="language">Favorite Language:</label>
+                <p>{{language}}</p>
+            <label for="comments">Comments(optional):</label>
+                <p>{{comments}}</p>
+            <button type="button" href="http://localhost:5000/" name="button">Go Back</button>
+        </div>
+    </body>
+</html>

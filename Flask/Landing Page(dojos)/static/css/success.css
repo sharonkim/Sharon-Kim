@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: black;
+    }
+
+p {
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+}
+    p:first-child {
+        margin-top: 250px;
+        font-size: 3em;
+    }
+    p:last-child {
+        margin-top: 30px;
+        font-size: 2em;
+    }
