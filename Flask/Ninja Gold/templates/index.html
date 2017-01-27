@@ -6,52 +6,49 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-        <p class="score">Gold: <span class="gold">{{ session['gold'] }}</span> </p>
-        <div class="place">
-            <h1>Farm</h1>
-            <p>(earns 10-20 gold)</p>
-            <form class="" action="/process_money" method="post">
-                <input type="hidden" name="action" value="farm">
-                <input type="submit" name="" value="Find Gold!">
-            </form>
+        <h3>You're Gold: {{ session['gold'] }}</h3>
+        <div class="game">
+            <div class="building">
+                <h4>Farm</h4>
+                <p>(earns 10-20 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="farm">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h4>Cave</h4>
+                <p>(earns 5-10 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="cave">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h4>House</h4>
+                <p>(earns 2-5 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="house">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="building">
+                <h4>Casino</h4>
+                <p>(earns/takes 0-50 golds)</p>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="casino">
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
         </div>
-        <div class="place">
-            <h1>Cave</h1>
-            <p>(earns 5-10 gold)</p>
-            <form class="" action="/process_money" method="post">
-                <input type="hidden" name="action" value="cave">
-                <input type="submit" name="" value="Find Gold!">
-            </form>
+        <div class="activities">
+            <h4>Activities:</h4>
+            {% for activity in session['activities']: %}
+                <p class="{{ activity[1] }}">{{ activity[0] }}</p>
+            {% endfor %}
         </div>
-        <div class="place">
-            <h1>House</h1>
-            <p>(earns 2-5 gold)</p>
-            <form class="" action="/process_money" method="post">
-                <input type="hidden" name="action" value="house">
-                <input type="submit" name="" value="Find Gold!">
-            </form>
-        </div>
-        <div class="place">
-            <h1>Casino</h1>
-            <p>(earns/takes 0-50 gold)</p>
-            <form class="" action="/process_money" method="post">
-                <input type="hidden" name="action" value="casino">
-                <input type="submit" name="" value="Find Gold!">
-            </form>
-        </div>
-        <p class="margin">Activities: </p>
-        <div class="history">
-            {%- for event in session['history'] -%}
-                <p class="{{ event[0] }}">{{ event[1] }}</p>
-            {%- endfor -%}
-        </div>
-
-
-        <br> <br> <br>
-        <form class="" action="/reset" method="post">
-            <input type="submit" name="" value="reset">
+        <form action="/reset" method="post">
+            <input type="submit" value="Start Over?">
         </form>
-
-
     </body>
 </html>

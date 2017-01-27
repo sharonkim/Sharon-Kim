@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, .red., .green, input {
+    display: block;
+    text-align: center;
+}
+body {
+    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.red, .green {
+    width: 300px;
+    border: 2px solid black;
+    font-size: 2em;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.red {
+    background: red;
+}
+
+.green {
+    background: green;
+}
+
+input[type='submit'] {
+    margin: 10px 0;
+    height: 30px;
+    width: 80px;
+}

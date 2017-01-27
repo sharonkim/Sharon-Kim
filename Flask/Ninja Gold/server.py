@@ -1,62 +1,54 @@
 from flask import Flask, request, session, render_template, redirect
 from time import gmtime, strftime
-from random import randint
+import random
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret key'
+app.secret_key = '\x0co\xc4\r\x19E_\xc8m\x0e\x95\xee\xd8\xfb-y=\xaa\xc1N\xb5\xee\x14\xe7'
 
 @app.route('/')
 def index():
-    try:
-        session['gold']
-    except:
+    print 'A'*50
+    if 'gold' not in session:
         session['gold'] = 0
+        print '1'*50
         return render_template('index.html')
 
 @app.route('/process_money', methods=['POST'])
 def process_money():
-    try:
-        session['history']
-    except:
-        session['history'] = []
-
-        action = request.form['action']
-        gold = 0
-        statement = ["green", ""]
-        time = strftime("(%Y-%m-%d %H:%M:%S)", gmtime())
-        if action == 'farm':
-            gold = randint(10,20)
-            statement[1] = "Earned " + str(gold) + " from the farm!  " + time
-        elif action == 'cave':
-            gold = randint(5,10)
-            statement[1] = "Earned " + str(gold) + " from the cave!  " + time
-        elif action == 'house':
-            gold = randint(2,5)
-            statement[1] = "Earned " + str(gold) + " from the house!  " + time
-        elif action == 'casino':
-            gold = randint(-50,50)
-            statement[1] = "Entered a casino and "
-            if gold < 0:
-                statement[1] += "lost " + str(gold)[1:] + " golds ... Ouch. " + time
-                statement[0] = "red"
-            else:
-                statement[1] += "Earned " + str(gold) + "golds ... Nice! " + time
-
-        if statement:
-            session['history'] = [statement] + session['history']
-
-        try:
-            session['gold'] += gold
-        except:
-            session['gold'] = gold
-        # print 'gold', session['gold']
-        # print 'history', session['history']
-        return redirect('/')
+    if request.form['building'] == 'farm':
+        gold = random.randrange(10, 21)
+        activity = 'Earned {} golds from the farm!'.format(gold)
+        process = 'earned'
+    elif request.form['building'] == 'cave':
+        gold = random.randrange(5, 11)
+        activity = 'Earned {} golds from the cave!'.format(gold)
+        process = 'earned'
+    elif request.form['building'] == 'house':
+        gold = random.randrange(2, 6)
+        activity = 'Earned {} golds from the house!'.format(gold)
+        process = 'earned'
+    elif request.form['building'] == 'casino':
+        gold = random.randrange(0, 51)
+        gamble = random.randint(0, 2)
+        if gold == 0:
+            activity = 'Earned {} golds from the casino!'.format(gold)
+            process = 'earned'
+        else:
+            activity = 'Lost {} golds from the casino...Ouch!'.format(gold)
+            process = 'red'
+    session['gold'] += gold
+    date = strftime("(%Y/%m/%d %I:%M %p)", gmtime())
+    activity = activity + " " + date
+    if 'activities' not in session:
+        session['activities'] = []
+    else:
+        session['activities'].append([activity, process])
+    return redirect('/')
 
 @app.route('/reset', methods=['POST'])
 def reset():
     session['gold'] = 0
-    session['history'] = []
+    session['activities'] = []
     return redirect('/')
 
 app.run(debug=True)
