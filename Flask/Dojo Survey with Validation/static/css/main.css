@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+div {
+    display: block;
+    margin: 20px auto 0 auto;
+    width: 600px;
+}
+
+form {
+    margin: 50px auto;
+    padding: 50px;
+    width: 600px;
+    border: 2px solid black;
+}
+    label, input, select {
+        display: inline-block;
+        vertical-align: top;
+    }
+    label[for='name'] {
+        margin: 10px 337px 15px 0;
+    }
+        input[type='text'] {
+            height: 30px;
+            width: 198px;
+        }
+    label[for='location'] {
+        margin: 10px 282px 15px 0;
+    }
+    label[for='language'] {
+        margin: 10px 246px 15px 0;
+    }
+    label[for='comments'] {
+        display: block;
+        margin: 10px 0 20px 0;
+    }
+    select {
+        margin: 0 0 10px 0;
+        height: 35px;
+        width: 200px;
+    }
+    input[type='submit'] {
+        margin: 10px 0 0 510px;
+        height: 30px;
+        width: 80px;
+        background: #76A5AF;
+        box-shadow: 5px 5px 2px black;
+    }

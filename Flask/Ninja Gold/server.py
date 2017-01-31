@@ -11,7 +11,7 @@ def index():
     if 'gold' not in session:
         session['gold'] = 0
         print '1'*50
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/process_money', methods=['POST'])
 def process_money():

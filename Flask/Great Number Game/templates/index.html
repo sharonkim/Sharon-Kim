@@ -3,37 +3,28 @@
     <head>
         <meta charset="utf-8">
         <title>Great Number Game</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css) }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     </head>
     <body>
         <h1>Welcome to the Great Number Game!</h1>
-        <h3>I am thinking of a number between 1 and 100</h3>
-        <p>Take a guess!</p>
-        {% if 'correct' not in session: %}
-            {% for 'guess' in session %}
-            <div class="red">
-                <p>{{ session['guess'] }}</p>
-            </div>
-                <form action="/guess" method="get">
-                    <input type="text" name="guess">
-                    <input type="submit" name="submit" value="Submit">
-                </form>
-            {% endfor %}
+        <h2>I am thinking of a number between 1 and 100</h2>
+        <h3>Take a guess!</h3>
 
-        {% elif: %}
-            <div class="green">
-                <p>{{ session['number'] }}</p>
-                <form action="/reset" method="get">
-                    <input type="submit" name="again" value="Play Again!">
-                </form>
-            </div>
-        {% endelif %}
-
-        {% else session['game'] == True: %}
-            <form action="/" method="get">
-                <input type="submit" name="play" value="Play Again!">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% for category, message in messages %}
+            <form action="/guess" method="POST">
+                <input type="text" name="guess" placeholder="Enter Number">
+                <input type="submit" name="submit" value="Submit">
             </form>
-        {% endelse %}
+            <form class="message" action="/reset" method="POST">
+                <div class="{{category}}">
+                    <p>{{ message }}</p>
+                </div>
+            {% endfor %}
+        {% endwith %}
+        {% if session['guess'] == session['number'] %}
+                <input type="submit" name="again" value="Play Again!">
+            </form>
         {% endif %}
     </body>
 </html>

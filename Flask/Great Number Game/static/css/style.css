@@ -1,26 +1,46 @@
 * {
     margin: 0;
     padding: 0;
-}
-
-body, .red., .green, input {
-    display: block;
-    text-align: center;
-}
-body {
-    margin-top: 50px;
-    justify-content: center;
-    align-items: center;
     font-family: sans-serif;
 }
 
-.red, .green {
-    width: 300px;
-    border: 2px solid black;
-    font-size: 2em;
+body, h1, h2, h3, form, input[type='text'], input[type='submit'] {
+    display: block;
+    vertical-align: top;
     text-align: center;
-    word-wrap: break-word;
 }
+
+body {
+    margin: auto;
+    width: 600px;
+}
+
+h3 {
+    margin: 15px 0;
+}
+
+input[type='text'], input[type='submit'] {
+    margin: 20px 225px 20px 225px;
+    height: 30px;
+    width: 150px;
+}
+
+input[type='submit'] {
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px black;
+}
+
+.message {
+    margin: 40px 200px 0 200px;
+    height: 200px;
+    width: 200px;
+    font-size: 2em;
+    border: 2px solid black;
+}
+    .message p {
+        margin: 70px 0;
+        text-align: center
+    }
 
 .red {
     background: red;
@@ -28,10 +48,4 @@ body {
 
 .green {
     background: green;
-}
-
-input[type='submit'] {
-    margin: 10px 0;
-    height: 30px;
-    width: 80px;
 }
