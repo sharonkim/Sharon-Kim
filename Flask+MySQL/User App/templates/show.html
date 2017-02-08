@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ user['name'] }}'s Page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css.syle.com') }}">
+    </head>
+    <body>
+        <h1>{{ user['name'] }}'s Show Page</h1>
+        <p>Email: {{ user['email'] }}</p>
+        <p>Created: {{ user['created_at'].strftime('%B %d, %Y') }}</p>
+        <a href="/">Home</a><a href="/user/{{ user['id'] }}/edit">Edit</a>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login and Registration</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for ('static',filename='css/index.css')}}">
+    </head>
+    <body>
+        <div class="login"> <!-- Login registered users -->
+            <h2>Log In</h2>
+            <form action='/wall' method='POST'>
+            <p>Email:   <input type="text" name="email" placeholder="you@emailaddress.com">
+            <p>Password:   <input type="password" name="password" placeholder="Enter password"></p>
+            <input type="submit" value="Log In">
+            </form>
+            <hr>
+        </div>
+        <div class="registration"><!-- Registration for new users -->
+            <h2>Create New Account</h2>
+            {% with errors = get_flashed_messages() %}
+                {% if errors %}
+                    {% for error in errors %}
+                        <p class="error">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action='/register' method='POST'>
+            <p class="fname">First Name: <input class="fname" type="text" name="first_name" placeholder="First Name"></p>
+            <p class="lname">Last Name: <input class="lname" type="text" name="last_name" placeholder="Last Name"></p>
+            <p class="email">Email: <input class='email' type="text" name="email" placeholder="you@emailaddress.com"></p>
+            <p class="password">Password: <input class="password" type="password" name="password" placeholder="Enter Password"></p>
+            <p class="confirm">Confirm Password: <input class="confirm" type="password" name="confirm" placeholder="Re-enter Password"></p>
+            <input type="submit" value="Register">
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Avant Garde", sans-serif;
+}
+
+form {
+    display: inline-block;
+}
+
+.register {
+    padding: 40px 400px 50px 400px;
+    height: 250px;
+    background: #41C6D4;
+}
+    .register h1 {
+    margin: 10px 50px 30px 50px;
+    text-align: center;
+    color: #d12a17;
+}
+    .register p {
+        display:  inline-block;
+        margin: 0 45px 0 0;
+        color: white;
+    }
+        .register p:nth-of-type(1) {
+            margin-right: 50px;
+        }
+        .register p:nth-of-type(2) {
+            margin-right: 30px
+        }
+        .register p:nth-of-type(3){
+            margin-right: 40px;
+        }
+        .register p:nth-of-type(4), .register p:nth-of-type(5) {
+            margin-right: 10px;
+        }
+    .register input[type='text'], .register input[type='password'] {
+        padding: 0 10px;
+        height: 30px;
+        width: 180px;
+        background: #f2e4a0;
+        border: 1px solid #f2e4a0;
+    }
+        .register input[name='first_name'] {
+            margin-right: 135px
+        }
+        .register input[name='email'] {
+            margin: 20px 0;
+            height: 30px;
+            width: 587px;
+        }
+        .register input[name='password'] {
+            margin-right: 20px;
+        }
+        .register input[type='submit'] {
+            margin: 30px 310px 40px 310px;
+            height: 30px;
+            width: 100px;
+            background: #eb5a49;
+            border: none;
+            color: white;
+        }
+
+.band {
+    height: 80px;
+    background: #F2F2F2;
+    box-shadow: inset  0  10px 8px -8px #696868,
+                inset  0 -10px 8px -8px #696868;
+}
+
+.login {
+    padding: 30px 250px;
+    height: 300px;
+    background: #f3988e;
+    align-items: center;
+}
+    .login h1 {
+        margin: 30px 300px;
+        color: #21828D;
+        text-align: center;
+    }
+    .login p, .login input {
+        display: inline-block;
+        color: #f5ecbc;
+    }
+    .login p:nth-of-type(1) {
+        margin-left: 200px;
+    }
+    .login input {
+        padding: 0 10px;
+        margin: 20px 50px 20px 20px;
+        height: 30px;
+        width: 160px;
+        background: white;
+        border: none;
+        color: black;
+    }
+    .login input[type='submit'] {
+        display: inline-block;
+        margin: 20px 0 20px 265px;
+        background: #41C6D4;
+        border: none;
+        color: white;
+    }
+    .login input[value='Forgot Password'], .login input[value='Logout'] {
+        float: right;
+    }
+    .login input[value='Forgot Password'] {
+        margin: -65px 0 20px 440px;
+    }
+    .login input[value='Logout'] {
+        margin: -83px 0 20px 615px;
+    }

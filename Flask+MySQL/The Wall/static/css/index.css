@@ -1,0 +1,67 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.login, .registration {
+    padding: 5px 15px;
+    margin: 15px 350px;
+    width: 800px;
+}
+
+h2 {
+    margin: 20px;
+    text-align: center;
+}
+
+.login p:nth-child(1) {
+    margin: 20px 0 20px 270px;
+}
+.login p:nth-child(2) {
+    margin: 20px 0 20px 240px;
+}
+
+input[type='text'],
+input[type='password'] {
+    padding: 0 10px;
+    height: 30px;
+    width: 150px;
+    text-align: center;
+}
+
+input[type='submit'] {
+    margin: 5px 365px;
+    height: 25px;
+    width: 80px;
+    background: blue;
+    border: 1px solid black;
+    box-shadow: 2px 2px black;
+    color: white;
+}
+
+hr {
+    margin: 40px 0 10px 0;
+}
+
+.error {
+    list-style: square;
+    font-size: 0.75em;
+    text-align: center;
+    color: red;
+}
+
+.fname, .lname, .email, .password, .confirm {
+    display: inline-block;
+    margin: 20px 15px;
+}
+
+.fname input, .lname input, .password input, .confirm input {
+    height: 30px;
+    width: 200px;
+}
+
+.email input {
+    height: 30px;
+    width: 660px;
+}

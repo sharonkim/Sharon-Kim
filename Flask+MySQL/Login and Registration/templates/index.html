@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <title>Registration Page</title>
+            <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+        </head>
+        <body>
+            <div class="container">
+                <div class="register">
+                    <h1>Registration</h1>
+                    <form action="/users" method="post">
+                        <p>First: </p><input type="text" name="first_name" placeholder="First Name">
+                        <p>Last: </p><input type="text" name="last_name" placeholder="Last Name">
+                        <p>Email: </p><input type="text" name="email" placeholder="ex. you@emailaddress.com">
+                        <p>Password: </p><input type="password" name="password" placeholder="Enter Password">
+                        <p>Password Confirmation:</p><input type="password" name="confirm" placeholder="Re-Enter Password">
+                        <input type="submit" value="Register">
+                    </form>
+                </div>
+                <div class="band">
+                </div>
+                <div class="login">
+
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <p class="error">{{ message }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <h1>Log In</h1>
+                    <form action="/login" method="post">
+                        <p>Email: </p><input type="text" name="email" placeholder="ex. you@emailaddress.com">
+                        <p>Password: </p><input type="password" name="password" placeholder="Password">
+                        <input type="submit" value="Log In">
+                    </form>
+                    <form action="/retrieve" method="get">
+                        <input type="submit" value="Forgot Password">
+                    </form>
+                    <form action="/logout" method="post">
+                        <input type="submit" name="" value="Logout">
+                    </form>
+                </div>
+            </div>
+        </body>
+    </html>
