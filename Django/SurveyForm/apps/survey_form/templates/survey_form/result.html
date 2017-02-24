@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Survey Form</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'survey_form/css/result.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="message">
+                <p>Thanks for submitting this form! You have submitted this form {{ request.session.attempt }} times now.</p>
+            </div>
+            <div class="user_info">
+                <h3>Submitted Information</h3>
+                <label>Name:</label>
+                    <p>{{ request.session.name }}</p>
+                <label>Dojo Location:</label>
+                    <p>{{ request.session.location }}</p>
+                <label>Favorite Language:</label>
+                    <p>{{ request.session.language }}</p>
+                <label>Comment:</label>
+                    <p>{{ request.session.comment }}</p>
+                <form action="/" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Go Back">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -17,6 +17,7 @@
         </div>
         <div class="registration"><!-- Registration for new users -->
             <h2>Create New Account</h2>
+            <!-- Validate form entries -->
             {% with errors = get_flashed_messages() %}
                 {% if errors %}
                     {% for error in errors %}

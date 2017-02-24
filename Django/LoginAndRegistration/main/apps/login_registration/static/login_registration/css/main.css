@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    height: auto;
+}
+
+h1 {
+    display: block;
+    margin: 40px 0 10px 15px;
+}
+
+label,
+input[type='text'],
+input[type='date'],
+input[type='password'] {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px 10px;
+}
+label {
+    width: 150px;
+    text-align: right;
+}
+input[type='text'],
+input[type='date'],
+input[type='password'] {
+    padding: 0 10px;
+    width: 250px;
+    height: 30px;
+    border: 3px solid black;
+}
+input[type='submit'] {
+    display: block;
+    margin-left: 367px;
+    width: 80px;
+    height: 30px;
+    background: #597eaa;
+    border: 3px solid black;
+    box-shadow: 2px 2px 2px black;
+    text-align: center;
+    color: white;
+}

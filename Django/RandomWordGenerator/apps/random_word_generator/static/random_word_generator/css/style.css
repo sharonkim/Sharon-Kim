@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.container {
+    margin: 0 auto;
+    width: 600px;
+}
+
+p, h3, input {
+    text-align: center;
+}
+
+p {
+    margin-top: 50px;
+    font-weight: bold;
+}
+
+h3 {
+    margin: 15px auto;
+    height: 50px;
+    width: 250px;
+    border: 3px solid black;
+    text-align: center;
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+    padding: 5px 10px;
+    border: 3px solid black;
+    box-shadow: 5px 5px 5px black;
+}

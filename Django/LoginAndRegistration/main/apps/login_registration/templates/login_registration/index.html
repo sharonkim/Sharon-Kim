@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Login and Registration</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'login_registration/css/main.css' %}">
+    </head>
+    <body>
+        <div class="container"> <!-- Page wrapper -->
+            <h1>Registration</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:red">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <form action="/register" method="post">
+                {% csrf_token %}
+                <label>First Name:</label>
+                    <input type="text" name="fname"> <!-- First name input field -->
+                <label>Last Name:</label>
+                    <input type="text" name="lname"> <!-- Last name input field -->
+                <label>Birthdate:</label>
+                    <input type="date" name="birthdate"> <!-- Birthdate input field -->
+                <label>Email:</label>
+                    <input type="text" name="email"> <!-- Email input field -->
+                <label>Password:</label>
+                    <input type="password" name="password"> <!-- Password input field -->
+                <label>Confirm Password:</label>
+                    <input type="password" name="c-password"> <!-- Password confirmation -->
+                <input type="submit" value="Register">
+            </form>
+            <h1>Login</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color:red">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <label>Email:</label>
+                    <input type="text" name="email"> <!-- Registered user's email -->
+                <label>Password:</label>
+                    <input type="password" name="password"> <!-- Registered user's password -->
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </body>
+</html>

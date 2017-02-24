@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    padding: 20px 25px;;
+}
+    header p, header span, .building {
+        display: inline-block;
+        vertical-align: top;
+    }
+    header p {
+        text-indent: 10px;
+    }
+    header span {
+        padding-left: 10px;
+        margin-left: 20px;
+    }
+
+.building {
+    margin: 10px;
+    max-width: 200px;
+    height: auto;
+}
+    .building h4, .building p, .building input {
+        text-align: center;
+    }
+    .building h4 {
+        margin: 20px auto;
+    }
+    .building input {
+        margin: 30px auto;
+        align-self: center;
+    }
+
+.activities {
+    margin: 10px auto;
+    max-width: 800px;
+}

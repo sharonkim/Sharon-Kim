@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Disappearing Ninjas</title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'disappearing_ninjas/css/show.css' %}">
+    </head>
+    <body>
+        <img src="/static/disappearing_ninjas/img/{{ ninja }}.jpg" alt="picture of {{ ninja }} from Teenage Mutant Ninja Turtles">
+    </body>
+</html>

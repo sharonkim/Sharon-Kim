@@ -11,34 +11,37 @@
             <p class="welcome">Welcome {{ user['first_name'] }}</p>
             <a href="/logout">log off</a>
         </header>
-        <div class="main_content"><!-- Form for submitting a new message -->
+        <div class="container"><!-- page wrapper -->
         <p>Post a message</p>
-        <form action="/new_message" method="post">
+        <form action="/new_message" method="post"> <!-- form to submit new message -->
             <textarea name="message" rows="8" cols="200"></textarea>
             <input type="submit" value="Post a message">
         </form>
         <!-- Iterate through messages -->
         {% for message in messages %}
             <p>{{ message['first_name'] }} {{ message['last_name']}} - {{ message['created_at'].strftime('%B %d %Y') }}</p>
-        <!-- User's option for deleting message -->
-        {% if message['user_id_pk'] == user %}
-        <!-- Form that contains button for deleting the message -->
-        <form action="/delete" method="post">
-            <input type="hidden" name="message_id" value="{{message['message_id_pk']}}">
-            <input type="submit" name="delete" value="Delete message">
-        </form>
-        {% endif %}
-        <p>{{ message['message'] }}</p>
-        {% for comment in message['comments'] %}
-            <p>{{ comment['first_name'] }} {{ comment['last_name'] }} - {{ comment['created_at'].strftime('%b %d %Y') }}</p>
-            <p>{{ comment['comment'] }}</p>
-        {% endfor %}
-        <form action="/comment" method="post">
-            <p>Post a comment</p>
-            <textarea name="comment" rows="8" cols="200"></textarea>
-            <input type="hidden" name="message_identifier" value="{{message['message_id_pk']}}">
-            <input type="submit" value="Post a comment">
-        </form>
+            <!-- User's option for deleting message -->
+            {% if message['user_id_pk'] == user %}
+            <!-- Form for deleting user's message -->
+            <form action="/delete" method="post">
+                <input type="hidden" name="message_id" value="{{message['message_id_pk']}}">
+                <input type="submit" name="delete" value="Delete message">
+            </form>
+            {% endif %}
+            <p>{{ message['message'] }}</p>
+            <!-- load message comments -->
+            {% for comment in message['comments'] %}
+                <p>{{ comment['first_name'] }} {{ comment['last_name'] }} - {{ comment['created_at'].strftime('%b %d %Y') }}</p>
+                <!-- post comment -->
+                <p>{{ comment['comment'] }}</p>
+            {% endfor %}
+            <!-- form to submit additional message comment(s) -->
+            <form action="/comment" method="post">
+                <p>Post a comment</p>
+                <textarea name="comment" rows="8" cols="200"></textarea>
+                <input type="hidden" name="message_identifier" value="{{message['message_id_pk']}}">
+                <input type="submit" value="Post a comment">
+            </form>
         {% endfor %}
         </div>
     </body>
