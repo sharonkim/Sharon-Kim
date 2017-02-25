@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from django.contrib import messages
+# from django.contrib import messages
 from datetime import datetime
 import bcrypt
 import re
@@ -16,7 +16,6 @@ class UserManager(models.Manager):
     def register(self, data):
         # print data
         # Data set as variables for readability
-        hashed_pw = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt())
         fname = data['fname']
         lname = data['lname']
         email = data['email']
@@ -59,13 +58,14 @@ class UserManager(models.Manager):
 
         # Return errors, upon failed validation
         if errors:
+            print (False, errors)
             return (False, errors)
 
         # If registration succeeds, hash password and render success message
         else:
             password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt()),
-            self.create(fname = fname, lname = lname, email = email, password = password)
-
+            self.create(fname=fname, lname=lname, email=email, password=password)
+            print True
             return True
 
 
