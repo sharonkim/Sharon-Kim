@@ -7,7 +7,6 @@ from .models import User, UserManager
 
 # Function to display registration/login form
 def index(request):
-    print '1'*50
     # if 'user_id' not in request.session:
     #     request.session['user_id'] = 0
     return render(request, 'login_registration/index.html')
@@ -23,8 +22,8 @@ def register(request):
     c_password = request.POST['c-password']
     errors = []
     # Passing data from Users model and storing information
-    user = User.objects.register(request)
-    user.save()
+    user = User.objects.register(request.POST)
+    # user.save(request.POST)
     # Validation errors saved as messages
     if errors:
         for error in errors:
@@ -39,9 +38,10 @@ def register(request):
 
             return redirect('/success')
 
-    # print user, '<<<------------ this is what we got back from the function'
+    print user, '<<<------------ this is what we got back from the function'
     # Reload index in case of error messages
-    print request, errors
+    # print '1'*50
+    # print request, errors
     return render(request, 'login_registration/index.html', errors)
 
 

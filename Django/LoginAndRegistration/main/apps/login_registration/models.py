@@ -58,11 +58,11 @@ class UserManager(models.Manager):
 
         # Return errors, upon failed validation
         if errors:
-            print (False, errors)
             return (False, errors)
 
         # If registration succeeds, hash password and render success message
         else:
+            print (False, errors)
             password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt()),
             self.create(fname=fname, lname=lname, email=email, password=password)
             print True
