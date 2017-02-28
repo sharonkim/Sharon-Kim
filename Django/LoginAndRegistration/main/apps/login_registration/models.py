@@ -49,12 +49,13 @@ class UserManager(models.Manager):
         # Set data as variables for readability
         minyear = 1900
         maxyear = datetime.today().year
-        birthdate = datetime.strptime(data['birthdate'], '%m/%d/%Y.%x')
-        print birthdate
+        birthdate = datetime.strptime(data['birthdate'], '%Y-%m-%d')
+        print data['birthdate']
 
         # Validate birthdate entry
-        if birthdate.year >= maxyear or birthdate < minyear:
-            print type(birthdate)
+        if birthdate.year >= maxyear or birthdate.year < minyear:
+            print type(data['birthdate'])
+            print len(data['birthdate'])
             errors.append('Please enter a valid birthdate')
 
         # Return errors, upon failed validation
@@ -65,7 +66,7 @@ class UserManager(models.Manager):
         else:
             # print (False, errors)
             password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt()),
-            self.create(fname=fname, lname=lname, email=email, password=password)
+            user = self.create(fname=fname, lname=lname, email=email, password=password, birthdate=birthdate)
             # print True
             return (True, user)
 
