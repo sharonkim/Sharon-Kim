@@ -1,0 +1,9 @@
+appdirs==1.4.0
+bcrypt==3.1.2
+cffi==1.9.1
+Django==1.10.5
+-e git://github.com/maraujop/django-crispy-forms.git@e933a788debcc03e80b0363fbcc31e52a67a82c0#egg=django_crispy_forms
+packaging==16.8
+pycparser==2.17
+pyparsing==2.1.10
+six==1.10.0

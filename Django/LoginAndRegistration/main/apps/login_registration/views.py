@@ -12,37 +12,39 @@ def index(request):
     return render(request, 'login_registration/index.html')
 
 
-# Function to register new userr
+# Function to register new user
 def register(request):
     # Set data as variables for readability
     fname = request.POST['fname']
-    lname = request.POST['lname']
+    # lname = request.POST['lname']
     email = request.POST['email']
-    password = request.POST['password']
-    c_password = request.POST['c-password']
-    errors = []
+    # password = request.POST['password']
+    # c_password = request.POST['c-password']
+    # errors = User.objects.register(request.POST)
     # Passing data from Users model and storing information
-    user = User.objects.register(request.POST)
+    my_tuple = User.objects.register(request.POST)
     # user.save(request.POST)
+    print my_tuple, '<<<---------this is what we got back'
     # Validation errors saved as messages
-    if errors:
-        for error in errors:
-            messages.error(request, errors)
+    if my_tuple[0] is False:
+        for error in my_tuple[1]:
+            messages.error(request, error)
 
-        else:
-            # Save user in session if successful validation
-            request.session['id'] = Users.objects.get(email = email).id
-            request.session['user'] = Users.objects.get(email = email).fname
-            # Validation success saved as message
-            messages.success(request, 'Successfully registered (or logged in)!')
+    else:
+        print my_tuple
+        # Save user in session if successful validation
+        request.session['id'] = my_tuple[1].id
+        request.session['user'] = my_tuple[1].fname
+        # Validation success saved as message
+        messages.success(request, 'Successfully registered (or logged in)!')
 
-            return redirect('/success')
+        return redirect('/success')
 
-    print user, '<<<------------ this is what we got back from the function'
+    print my_tuple, '<<<------------ this is what we got back from the function'
     # Reload index in case of error messages
     # print '1'*50
     # print request, errors
-    return render(request, 'login_registration/index.html', errors)
+    return redirect('/')
 
 
 # Function to validate user login credentials

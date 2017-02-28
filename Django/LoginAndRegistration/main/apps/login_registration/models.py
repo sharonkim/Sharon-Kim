@@ -1,14 +1,13 @@
 from __future__ import unicode_literals
 from django.db import models
-# from django.contrib import messages
+from django.contrib import messages
 from datetime import datetime
-import bcrypt
-import re
+import bcrypt, re
 
 # Regular expressions defined and set as variables for readability
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._]+\.[a-zA-Z]*$')
 NAME_REGEX = re.compile(r'.*([a-zA-Z]).*')
-DOB_REGEX = re.compile(r'([0][1-9]|[1][0-2])\/([0][1-9]|[1-2][0-9]|[3][0-1])\/[0-9]{4}')
+# DOB_REGEX = re.compile(r'([0][1-9]|[1][0-2])\/([0][1-9]|[1-2][0-9]|[3][0-1])\/[0-9]{4}')
 
 
 # Registration form for new user registration
@@ -50,10 +49,12 @@ class UserManager(models.Manager):
         # Set data as variables for readability
         minyear = 1900
         maxyear = datetime.today().year
-        birthdate = data['birthdate']
+        birthdate = datetime.strptime(data['birthdate'], '%m/%d/%Y.%x')
+        print birthdate
 
         # Validate birthdate entry
-        if birthdate <= maxyear or birthdate > minyear or not DOB_REGEX.match(birthdate):
+        if birthdate.year >= maxyear or birthdate < minyear:
+            print type(birthdate)
             errors.append('Please enter a valid birthdate')
 
         # Return errors, upon failed validation
@@ -62,11 +63,11 @@ class UserManager(models.Manager):
 
         # If registration succeeds, hash password and render success message
         else:
-            print (False, errors)
+            # print (False, errors)
             password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt()),
             self.create(fname=fname, lname=lname, email=email, password=password)
-            print True
-            return True
+            # print True
+            return (True, user)
 
 
     # Login form for existing users
