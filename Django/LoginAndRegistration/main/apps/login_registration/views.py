@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import User, UserManager
@@ -7,8 +7,6 @@ from .models import User, UserManager
 
 # Function to display registration/login form
 def index(request):
-    # if 'user_id' not in request.session:
-    #     request.session['user_id'] = 0
     return render(request, 'login_registration/index.html')
 
 
@@ -16,63 +14,63 @@ def index(request):
 def register(request):
     # Set data as variables for readability
     fname = request.POST['fname']
-    # lname = request.POST['lname']
     email = request.POST['email']
-    # password = request.POST['password']
-    # c_password = request.POST['c-password']
-    # errors = User.objects.register(request.POST)
     # Passing data from Users model and storing information
-    my_tuple = User.objects.register(request.POST)
+    user = User.objects.register(request.POST)
     # user.save(request.POST)
-    print my_tuple, '<<<---------this is what we got back'
+    print user, '<<<---------this is what we got back'
     # Validation errors saved as messages
-    if my_tuple[0] is False:
-        for error in my_tuple[1]:
+    if user[0] is False:
+        for error in user[1]:
             messages.error(request, error)
 
     else:
-        print my_tuple
+        print user
         # Save user in session if successful validation
-        request.session['id'] = my_tuple[1].id
-        request.session['user'] = my_tuple[1].fname
+        request.session['id'] = user[1].id
+        request.session['user'] = user[1].fname
         # Validation success saved as message
         messages.success(request, 'Successfully registered (or logged in)!')
 
         return redirect('/success')
 
-    print my_tuple, '<<<------------ this is what we got back from the function'
+    print user, '<<<------------ this is what we got back from the function'
     # Reload index in case of error messages
-    # print '1'*50
-    # print request, errors
     return redirect('/')
 
 
 # Function to validate user login credentials
 def login(request):
     # Setting data to variables for readability
-    email = request.POST['email']
+    # email = request.POST['email']
+    # password = request.POST['password']
+    username = request.POST['email']
     password = request.POST['password']
-    user = authenticate(email=email, password=password)
+    user = authenticate(username=username, password=password)
+    # error = User.objects.login(request.POST)
     # Save user to session upon successful validation
     if user is not None:
+        print user
+        login(request, user)
         return redirect('/success')
 
     # If authentication fails, return error message
     else:
-        return 'Invalid login information'
+        return 'Email or password is incorrect'
     # Reload index to render messages
     return redirect('/')
 
 
 # Function to render page upon successful registration/login
 def success(request):
-    return render(request, 'login_registration/success.html', user)
+    return render(request, 'login_registration/success.html')
 
 
 # Function to remove user from session
 def logout(request):
-    if user in request.session:
-        request.session.pop(user)
+    # if 'user' in request.session:
+    #     request.session.pop('user')
+    logout(request)
 
     # Reload index
     return redirect('/')

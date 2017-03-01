@@ -9,6 +9,11 @@
     height: auto;
 }
 
+.register, .login {
+    max-width: 300px;
+    height: auto;
+}
+
 h1 {
     display: block;
     margin: 40px 0 10px 15px;

@@ -73,26 +73,26 @@ class UserManager(models.Manager):
 
     # Login form for existing users
     def login(self, data):
-        user_list = User.objects.filter(email=data['email'])
+        user = User.objects.filter(email=data['email'])
         errors = []
 
-        # Validate email has been entered
-        if len(email) < 1 or not re.match[EMAIL_REGEX, email]:
-            errors.append('Invalid login information')
-
-        # Validate password has been entered
-        if len(password) < 1:
-            errors.append('Invalid login information')
+        # # Validate email has been entered
+        # if len(email) < 1 or not re.match[EMAIL_REGEX, email]:
+        #     errors.append('Invalid login information')
+        #
+        # # Validate password has been entered
+        # if len(password) < 1:
+        #     errors.append('Invalid login information')
 
         # If login info entered incorrectly, flash warning
-        if not user_list or bycrypt.hashpw(data['password'].encode(), user.password.encode()) != user.password:
+        if not user or bycrypt.hashpw(data['password'].encode(), user.password.encode()) != user.password:
             errors.append('Email or password is incorrect')
 
             # print(False, errors)
             return(False, errors)
 
-        if user_list:
-            user = user_list[0]
+        if user:
+            user = user[0]
             bycrypt.hashpw(data['password'].encode(), user.password.encode()) == user.password
             request.session['user_id'] = user.id
             request.session['email'] = user.email
