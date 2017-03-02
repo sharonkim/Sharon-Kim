@@ -1,7 +1,5 @@
-from __future__ import absolute_import
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login as auth_login
 from .models import User, UserManager
 
 
@@ -11,8 +9,8 @@ def index(request): # Function to display registration/login form
 
 def register(request):  # Function to register new user
     fname = request.POST['fname']   # Set data as variables for readability
-    email = request.POST['email']   # Set data as variables for readability
-    user = User.objects.register(request.POST)  # Passing data from Users model and storing information
+    email = request.POST['email']
+    user = User.objects.register(request.POST)  # Passing data from User model
     print user, '<<<---------this is what we got back'
 
     if user[0] is False:    # Validation errors saved as messages
@@ -32,19 +30,17 @@ def register(request):  # Function to register new user
 
 def login(request): # Function to validate user login credentials
     email = request.POST['email']   # Setting data to variables for readability
-    password = request.POST['password'] # Setting data to variables for readability
-    user = authenticate(email=email, password=password) # Setting data to variables for readability
-    print '1'*50
+    password = request.POST['password']
+    result = User.objects.login(email, password)    # Validate user information
 
-    if user is not None:    # Save user to session upon successful validation
-        auth_login(request, user)
+    if result[0]:   # If user validation is successful, confirm success
+        request.session['login'] = result[1].id
         messages.success(request, 'Successfully logged in!')
         return redirect('/success')
-        print '2'*50
-    else:   # If authentication fails, return error message
-        print '3'*50
-        messages.error(request, 'Email or password is incorrect')
-        return redirect('/')
+
+    else:   # If user validation fails, flash error message
+        errorMessages = result[1]
+        return render(request, 'login_registration/index.html', errorMessages)
 
 
 def success(request):   # Function to render page upon successful registration/login

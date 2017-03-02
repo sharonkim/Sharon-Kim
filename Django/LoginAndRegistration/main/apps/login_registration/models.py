@@ -11,8 +11,7 @@ NAME_REGEX = re.compile(r'.*([a-zA-Z]).*')  # Regular expressions defined and se
 
 class UserManager(models.Manager):  # Registration form for new user registration
     def register(self, data):
-        print data
-        fname = data['fname']   # Data set as variables for readability
+        fname = data['fname']   # Setting data as variables for readability
         lname = data['lname']
         email = data['email']
         today = datetime.today()
@@ -36,7 +35,7 @@ class UserManager(models.Manager):  # Registration form for new user registratio
             errors.append('Password must contain at least (8) characters')
 
         if c_password != password:  # Confirm password match
-            errors.append('Passwords DO NOT match')
+            errors.append('Confirmation password does not match')
 
 
         minyear = 1900  # Set data as variables for readability
@@ -53,28 +52,34 @@ class UserManager(models.Manager):  # Registration form for new user registratio
             return (False, errors)
 
         else:   # If registration succeeds, hash password and render success message
-            password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt()),
-            user = self.create(fname=fname, lname=lname, email=email, password=password, birthdate=birthdate)
+            pw_bytes = password.encode('utf-8')
+            password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+            user = User.objects.create(fname=fname, lname=lname, email=email, password=password, birthdate=birthdate)
             return (True, user)
 
 
-    def login(self, postData):  # Login form for existing users
-        user = User.objects.filter(email=postData['email'])
-        errors = []
+    def login(self, email, password):  # Login form for existing users
+        errors = {}
+        try:
+            user = User.objects.get(email=email)
 
-        if not user or bycrypt.hashpw(postData['password'].encode(), user.password.encode()) != user.password:  # If login info entered incorrectly, flash warning
-            errors.append('Email or password is incorrect')
-            print(False, errors)
+        except:
+            user = 'None'
+
+        if user == 'None':
+            errors['noEmail'] = 'Email or password is incorrect'
+
+        else:
+            hash = user.password.encode('utf-8')
+            pw_bytes = password.encode('utf-8')
+            if bcrypt.hashpw(pw_bytes, hash) != hash:
+                errors['noEmail'] = 'Email or password is incorrect'
+
+        if len(errors) is not 0:
             return(False, errors)
 
-        if user:
-            user = user[0]
-            bycrypt.hashpw(postData['password'].encode(), user.password.encode()) == user.password
-            request.session['user_id'] = user.id
-            request.session['email'] = user.email
-
-            print(True, errors)
-            return (True, user)
+        else:
+            return(True, user)
 
 
 class User(models.Model):
