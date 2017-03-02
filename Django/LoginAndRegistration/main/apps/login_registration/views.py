@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as auth_login
 from .models import User, UserManager
 
 
@@ -34,14 +34,15 @@ def login(request): # Function to validate user login credentials
     email = request.POST['email']   # Setting data to variables for readability
     password = request.POST['password'] # Setting data to variables for readability
     user = authenticate(email=email, password=password) # Setting data to variables for readability
+    print '1'*50
 
     if user is not None:    # Save user to session upon successful validation
-        print email
-        login(request, user)
+        auth_login(request, user)
         messages.success(request, 'Successfully logged in!')
         return redirect('/success')
-
+        print '2'*50
     else:   # If authentication fails, return error message
+        print '3'*50
         messages.error(request, 'Email or password is incorrect')
         return redirect('/')
 
@@ -51,4 +52,5 @@ def success(request):   # Function to render page upon successful registration/l
 
 
 def logout(request):    # Function to remove user from session
+    messages.success(request, 'You have been successfully logged out')
     return redirect('/')    # Reload index

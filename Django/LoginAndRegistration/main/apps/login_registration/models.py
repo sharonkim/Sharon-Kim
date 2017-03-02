@@ -58,18 +58,18 @@ class UserManager(models.Manager):  # Registration form for new user registratio
             return (True, user)
 
 
-    def login(self, data):  # Login form for existing users
-        user = User.objects.filter(email=data['email'])
+    def login(self, postData):  # Login form for existing users
+        user = User.objects.filter(email=postData['email'])
         errors = []
 
-        if not user or bycrypt.hashpw(data['password'].encode(), user.password.encode()) != user.password:  # If login info entered incorrectly, flash warning
+        if not user or bycrypt.hashpw(postData['password'].encode(), user.password.encode()) != user.password:  # If login info entered incorrectly, flash warning
             errors.append('Email or password is incorrect')
             print(False, errors)
             return(False, errors)
 
         if user:
             user = user[0]
-            bycrypt.hashpw(data['password'].encode(), user.password.encode()) == user.password
+            bycrypt.hashpw(postData['password'].encode(), user.password.encode()) == user.password
             request.session['user_id'] = user.id
             request.session['email'] = user.email
 
