@@ -24,7 +24,6 @@ def register(request):  # Function to register new user
         request.session['id'] = user[1].id  # Save user in session if successful validation
         request.session['user'] = user[1].fname
         messages.success(request, 'Successfully registered!')   # Validation success saved as message
-
         return redirect('/success')
 
     print user, '<<<------------ this is what we got back from the function'
