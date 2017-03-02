@@ -49,6 +49,7 @@ def login(request):
     user = authenticate(username=username, password=password)
     # error = User.objects.login(request.POST)
     # Save user to session upon successful validation
+    print username
     if user is not None:
         print user
         login(request, user)

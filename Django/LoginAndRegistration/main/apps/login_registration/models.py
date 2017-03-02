@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
-from django.db import models
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.db import models
 from datetime import datetime
 import bcrypt, re
 
@@ -11,7 +12,7 @@ NAME_REGEX = re.compile(r'.*([a-zA-Z]).*')
 
 
 # Registration form for new user registration
-class UserManager(models.Manager):
+class UserManager(models.Manager, AuthenticationForm):
     def register(self, data):
         # print data
         # Data set as variables for readability
@@ -72,7 +73,7 @@ class UserManager(models.Manager):
 
 
     # Login form for existing users
-    def login(self, data):
+    def login(self, user):
         user = User.objects.filter(email=data['email'])
         errors = []
 
