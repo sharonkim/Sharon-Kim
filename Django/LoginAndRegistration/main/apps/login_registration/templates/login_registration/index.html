@@ -8,12 +8,12 @@
     </head>
     <body>
         <div class="container"> <!-- Page wrapper -->
-            <h1>Registration</h1>
             {% if messages %}
-                {% for message in messages %}
-                    <p style="color:red">{{ message }}</p>
-                {% endfor %}
+            {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+            {% endfor %}
             {% endif %}
+            <h1>Registration</h1>
             <form action="/register" method="post">
                 {% csrf_token %}
                 <label>First Name:</label>
@@ -31,11 +31,6 @@
                 <input type="submit" value="Register">
             </form>
             <h1>Login</h1>
-            {% if messages %}
-                {% for message in messages %}
-                    <p style="color:red">{{ message }}</p>
-                {% endfor %}
-            {% endif %}
             <form action="/login" method="post">
                 {% csrf_token %}
                 <label>Email:</label>

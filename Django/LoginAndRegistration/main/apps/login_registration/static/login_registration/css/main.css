@@ -5,8 +5,20 @@
 }
 
 .container {
+    margin: auto;
     max-width: 600px;
     height: auto;
+}
+
+.alert {
+    margin-top: 30px;
+    text-align: center;
+    color: red;
+}
+
+.messages {
+    margin-top: 30px;
+    text-align: center;
 }
 
 .register, .login {

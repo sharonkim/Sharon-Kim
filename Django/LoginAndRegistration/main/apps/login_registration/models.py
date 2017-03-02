@@ -75,15 +75,6 @@ class UserManager(models.Manager):
     def login(self, data):
         user = User.objects.filter(email=data['email'])
         errors = []
-
-        # # Validate email has been entered
-        # if len(email) < 1 or not re.match[EMAIL_REGEX, email]:
-        #     errors.append('Invalid login information')
-        #
-        # # Validate password has been entered
-        # if len(password) < 1:
-        #     errors.append('Invalid login information')
-
         # If login info entered incorrectly, flash warning
         if not user or bycrypt.hashpw(data['password'].encode(), user.password.encode()) != user.password:
             errors.append('Email or password is incorrect')
