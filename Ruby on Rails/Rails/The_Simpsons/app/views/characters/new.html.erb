@@ -1,0 +1,14 @@
+<%= image_tag("Create_title.png") %>
+<form action="/characters" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label>First Name: </label>
+    <input type="text" name="character[fname]" placeholder="First Name">
+    <label>Last Name: </label>
+    <input type="text" name="character[lname]" placeholder="Last Name">
+    <labe>Workplace:</labe>
+    <input type="text" name="character[workplace]" placeholder="Workplace">
+    <input type="submit" value="Create">
+</form><br>
+
+<%= image_tag("in_my_room.png") %><br>
+<%= image_tag("SimpsonsCouch3.gif") %>
