@@ -22,6 +22,12 @@ class CharactersController < ApplicationController
       redirect_to "/"
   end
 
+  def update
+      @character = Character.find(params[:id])
+      @character.update( character_params )
+      redirect_to "/characters/#{params[:id]}"
+  end
+
   private
   def character_params
       params.require(:character).permit(:fname, :lname, :workplace)

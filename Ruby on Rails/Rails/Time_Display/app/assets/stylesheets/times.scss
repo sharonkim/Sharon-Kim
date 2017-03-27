@@ -1,3 +1,28 @@
 // Place all the styles related to the Times controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", sans-serif;
+}
+
+.text {
+    margin: 30px auto;
+    padding: 1px 0 10px 0;
+    width: 175px;
+    border: 3px solid black;
+    font-size: 0.75em;
+    text-align: center;
+}
+
+.date_time {
+    padding: 5px 60px 40px 60px;
+    margin: auto;
+    width: 250px;
+    border: 3px solid black;
+    font-size: 2em;
+    word-wrap: break-word;
+    text-align: center;
+}

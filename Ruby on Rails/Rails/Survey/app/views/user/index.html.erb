@@ -1,0 +1,22 @@
+<form action="/" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label>Your Name:</label>
+        <input type="text" name="data[name]">
+    <label>Favorite Language:</label>
+        <select name="data[language]">
+            <option value="C++">C++</option>
+            <option value="Javascript">Javascript</option>
+            <option value="Python">Python</option>
+            <option value="Ruby on Rails">Ruby on Rails</option>
+        </select>
+    <label>Dojo Location:</label>
+        <select name="data[location]">
+            <option value="Dallas">Dallas</option>
+            <option value="New York">New York</option>
+            <option value="Seattle">Seattle</option>
+            <option value="Silicon Valley">Silicon Valley</option>
+        </select>
+    <label>Comment (optional):</label>
+        <textarea name="data[comment]" rows="4" cols="40"></textarea>
+        <input type="submit" value="Submit">
+</form>

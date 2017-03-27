@@ -1,0 +1,15 @@
+<% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+<h1>Submitted Information</h1>
+<table>
+    <% session[:data].each do |name, value| %>
+        <% if !value.empty? %>
+            <tr>
+                <td><%= name %></td>
+                <td><%= value %></td>
+            </tr>
+        <% end %>
+    <% end %>
+</table>
+<a href="/">Go Back</a>

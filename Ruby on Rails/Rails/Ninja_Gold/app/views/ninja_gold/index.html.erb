@@ -1,0 +1,49 @@
+<%= stylesheet_link_tag "ninja_gold.scss" %>
+<p>Your Gold: <span class="gold"><%= session[:gold] %></span></p>
+
+<% flash.each do |key, value| %>
+  <p class="<%= key %><%= value %>"></p>
+<% end %>
+
+<div class="actions">
+  <form action="/ninja_gold/index" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <input type="hidden" name="activity" value="farm">
+    <legend>Farm</legend>
+    <p>(earns 10-20 gold)</p>
+    <input type="submit" value="Find Gold!">
+  </form>
+
+  <form action="/ninja_gold/index" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <input type="hidden" name="activity" value="cave">
+    <legend>Cave</legend>
+    <p>(earns 5-10 gold)</p>
+    <input type="submit" value="Find Gold!">
+  </form>
+
+  <form action="/ninja_gold/index" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <input type="hidden" name="activity" value="house">
+    <legend>House</legend>
+    <p>(earns 2-5 gold)</p>
+    <input type="submit" value="Find Gold!">
+  </form>
+
+  <form action="/ninja_gold/index" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <input type="hidden" name="activity" value="casino">
+    <legend>Casino</legend>
+    <p>(earns/takes 0-50 gold)</p>
+    <input type="submit" value="Find Gold!">
+  </form>
+</div>
+
+<div class="history">
+  <h3>Activities</h3>
+  <ul>
+    <% session[:history].each do |type, info| %>
+      <li class="<%= type %><%= info %>"></li>
+    <% end %>
+  </ul>
+</div>

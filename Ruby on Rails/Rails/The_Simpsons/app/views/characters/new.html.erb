@@ -1,6 +1,7 @@
 <%= image_tag("Create_title.png") %>
 <form action="/characters" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="patch">
     <label>First Name: </label>
     <input type="text" name="character[fname]" placeholder="First Name">
     <label>Last Name: </label>

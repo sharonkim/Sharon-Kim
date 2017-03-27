@@ -1,6 +1,5 @@
 class TimesController < ApplicationController
   def main
-      render :long => '%B %d, %Y'
-      render
+      @time = Time.new.strftime("%b %d, %Y %I:%M %p")
   end
 end

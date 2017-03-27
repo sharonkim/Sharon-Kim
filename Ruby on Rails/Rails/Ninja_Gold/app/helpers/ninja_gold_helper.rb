@@ -1,0 +1,2 @@
+module NinjaGoldHelper
+end

@@ -7,11 +7,20 @@
 </div><br>
 <div class="right">
     <% content_for :right do %>
-    <form action="/character/<%= @character.id %>" method="post">
-        First Name: <input type="text" class="form-horizontal" id="character[fname]" value="<%= @character.fname %>">
-        Last Name: <input type="text" class="form-horizontal" id="character[lname]" value="<%= @character.lname %>">
-        Workplace: <input type="text" class="form-horizontal" id="character[workplace]" value="<%= @character.workplace %>">
+    <!-- <form action="/characters/<%= @character.id %>" method="post">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="_method" value="patch">
+        First Name: <input type="text" class="form-horizontal" name="character[fname]" value="<%= @character.fname %>">
+        Last Name: <input type="text" class="form-horizontal" name="character[lname]" value="<%= @character.lname %>">
+        Workplace: <input type="text" class="form-horizontal" name="character[workplace]" value="<%= @character.workplace %>">
         <input type="submit" value="Update">
-    </form>
+    </form> -->
+
+    <%= form_for @character, :url => {:action => "update"} do |f| %>
+        <%= f.text_field :fname %>
+        <%= f.text_field :lname %>
+        <%= f.text_field :workplace %>
+        <%= f.submit "update" %>
+    <% end %>
     <% end %>
 </div>

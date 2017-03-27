@@ -1,0 +1,30 @@
+// Place all the styles related to the Ninja_Gold controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul, form, .gold {
+  border: 3px solid black;
+}
+
+ul {
+  padding: 10px;
+  overflow: auto;
+  height: 250px;
+}
+  li { list-style-type: none;}
+  .gain { color: green; }
+  .loss { color: red; }
+
+legend { margin: auto; }
+
+form, .gold { text-align: center;}
+
+form {
+  display: inline-block;
+  width: 150px;
+}
+
+.gold {
+  display: inline-block;
+  width: 150px;
+}
