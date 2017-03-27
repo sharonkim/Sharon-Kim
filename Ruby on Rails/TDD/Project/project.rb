@@ -5,7 +5,7 @@ class Project
         @name = name
         @description = description
         @owner = owner
-        @tasks = Array.new
+        @tasks = String.new()
     end
 
     def elevator_pitch
@@ -16,12 +16,12 @@ class Project
       "#{@tasks}"
     end
 
-    def add_tasks(tasks)
+    def add_task(tasks)
       @tasks << tasks
     end
 
-    def print_tasks(tasks)
-      @tasks.each do |task|
+    def print_tasks
+      @tasks.each do
         "#{@tasks}"
     end
   end

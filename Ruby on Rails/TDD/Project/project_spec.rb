@@ -1,5 +1,6 @@
 require_relative 'project'
 
+
 RSpec.describe Project do
   before(:each) do
     # updated this block to create two projects
@@ -25,13 +26,17 @@ RSpec.describe Project do
   end
 
   it 'has a method add_tasks that pushes a task to the task attribute' do
-    @project1.add_tasks("Must...Sleep...")
-    expect(@project1.add_tasks).to eq("Must...Sleep...")
+    tasks = "Must...Sleep..."
+    @project1.add_task(tasks)
+    expect(@project1.tasks).to eq(tasks)
   end
 
   it 'has a method print_tasks that prints each task in the tasks attribute' do
-    @project1.print_tasks("Sweat. Code. Sleep(not really).")
-    @project1.print_tasks("Repeat...")
-    expect(@project1.print_tasks).to eq(["Sweat. Code. Sleep(not really).", "Repeat..."])
+    @project1.add_task("Sweat. ")
+    @project1.add_task("Code. ")
+    @project1.add_task("Sleep(maybe). ")
+    @project1.add_task("Repeat...")
+    # all_tasks = @project1.add_task
+    expect(@project1.print_tasks).to eq(@project1.add_task)
   end
 end
