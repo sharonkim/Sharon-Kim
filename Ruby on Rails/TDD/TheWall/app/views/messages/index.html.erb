@@ -1,0 +1,47 @@
+<title>The Wall</title>
+<header>
+    <h4>CodingDojo Wall</h4>
+    <h2>Welcome, #{@user.first_name}</h2>
+    <%= link_to "Logout", "/logout", data: { method: :delete, confirm: "You are logging out of The Wall" } %>
+</header>
+
+<h1>Post a message</h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+        <p><%= e %></p>
+    <% end %>
+<% end %>
+
+<form action="/messages" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <textarea name="message[message]" rows="10" cols="60"></textarea>
+    <input type="submit" value="Post a message">
+</form>
+
+<% @messages.each do |m| %>
+
+    <h2><%= m.user.username %> - <%= m.created_at.strftime("%B %d, %Y") %></h2>
+    <p><%= m.message %></p>
+
+<% end %>
+
+<form action="/messages" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <textarea name="message[message]" rows="10" cols="60"></textarea>
+    <input type="submit" value="Post a message">
+</form>
+
+<% @comments.each do |comment| %>
+
+    <h2><%= comment.user.username %> - <%= comment.created_at.strftime("%B %d, %Y") %></h2>
+    <p><%= comment.comment %></p>
+
+<% end %>
+
+<form action="/comments" method="post">
+    <input type="hidden" name="authenticity_token" value="form_authenticity_token">
+    <input type="hidden" value="<%= message.id %>">
+    <textarea name="content" rows="8" cols="80"></textarea>
+    <input type="submit" value="Post a comment">
+</form>

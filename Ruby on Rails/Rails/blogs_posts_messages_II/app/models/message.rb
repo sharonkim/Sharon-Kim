@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
-  belongs_to :user
-  belongs_to :post
+    belongs_to :user
+    belongs_to :post
 
-  validates :author, :meassage:, presence: true
+    has_many :comments, as: :commentable
+    validates :author, :meassage:, presence: true
 end

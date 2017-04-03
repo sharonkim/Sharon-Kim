@@ -1,35 +1,44 @@
 class CharactersController < ApplicationController
-  def index
+    before_action :logged_in, only: [:create, :show]
+    before_action :logged_in, except: [:index, :new]
+
+    def index
       flash[:greeting] = "Eat my shorts!"
       @characters = Character.all
-  end
+    end
 
-  def new
-  end
+    def new
+      render layout: 'two col'
+    end
 
-  def edit
+    def edit
       @character = Character.find(params[:id])
-      render layout: "two_col"
- end
+      render layout: 'two_col'
+    end
 
-  def show
+    def show
       puts params[:char_id] # whatever
-  end
+    end
 
-  def create
-    #   puts "We are here"
-      Character.create( character_params )
-      redirect_to "/"
-  end
+    def create
+      char = Character.create( character_params )
+      if char.valid?
+          redirect_to '/'
 
-  def update
+      else
+          flash[:errors] = char.errors.full_messages
+          redirect_to '/characters/new'
+      end
+    end
+
+    def update
       @character = Character.find(params[:id])
       @character.update( character_params )
       redirect_to "/characters/#{params[:id]}"
-  end
+    end
 
-  private
-  def character_params
+    private
+    def character_params
       params.require(:character).permit(:fname, :lname, :workplace)
-  end
+    end
 end

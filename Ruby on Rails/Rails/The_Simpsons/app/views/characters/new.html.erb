@@ -1,4 +1,11 @@
 <%= image_tag("Create_title.png") %>
+<%= stylesheet_link_tag 'new' %>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |f| %>
+        <p><%= f %></p>
+    <% end %>
+<% end %>
 <form action="/characters" method="post">
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="hidden" name="_method" value="patch">
@@ -9,7 +16,7 @@
     <labe>Workplace:</labe>
     <input type="text" name="character[workplace]" placeholder="Workplace">
     <input type="submit" value="Create">
-</form><br>
+</form>
 
-<%= image_tag("in_my_room.png") %><br>
+<%= image_tag("in_my_room.png") %>
 <%= image_tag("SimpsonsCouch3.gif") %>

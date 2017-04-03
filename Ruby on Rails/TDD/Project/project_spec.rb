@@ -27,16 +27,12 @@ RSpec.describe Project do
 
   it 'has a method add_tasks that pushes a task to the task attribute' do
     tasks = "Must...Sleep..."
-    @project1.add_task(tasks)
-    expect(@project1.tasks).to eq(tasks)
+    1.upto(3) { |n| @project1.add_task("Task ##{n}") }
+    expect(@project1.tasks).to eq(["Task #1", "Task #2", "Task #3"])
   end
 
   it 'has a method print_tasks that prints each task in the tasks attribute' do
-    @project1.add_task("Sweat. ")
-    @project1.add_task("Code. ")
-    @project1.add_task("Sleep(maybe). ")
-    @project1.add_task("Repeat...")
-    # all_tasks = @project1.add_task
-    expect(@project1.print_tasks).to eq(@project1.add_task)
+    1.upto(3) { |n| @project1.add_task("Code! ") }
+    expect(@projet1.print_tasks).to output("Code!\nCode!\nCode!").to_stdout
   end
 end

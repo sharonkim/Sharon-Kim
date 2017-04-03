@@ -1,47 +1,50 @@
 class DojoController < ApplicationController
-  def index
-    @dojos = Dojo.all
-    @count = Dojo.all.count
-  end
-
-  def new
-    puts params[:dojo_id]
-  end
-
-  def create
-    @dojo = Dojo.create(dojo_params)
-    if @dojo.valid?
-
-      redirect_to "/dojos"
-
-    else
-      flash[:error] = @dojo.errors.full_messages
-      redirect_to "/dojos/new"
+    def index
+        @dojos = Dojo.all
     end
-  end
 
-  def show
-    @dojo = Dojo.find(params[:id])
-    @students = Dojo.find(params[:id].students)
-  end
+    def new
+        @dojo = Dojo.new
+    end
 
-  def edit
-    @dojos = Dojo.find(params[:id])
-  end
+    def create
+        @dojo = Dojo.new(dojo_params)
 
-  def update
-    Dojo.find(params[:id]).update(dojo_params)
-    redirect_to "/dojos"
-  end
+        if @dojo.save
+            redirect_to root_url, notice: "You have successfully created a Dojo!"
 
-  def destroy
-    Dojo.find(params[:id]).destroy
-    redirect_to "/dojos"
-  end
+        else
+          flash[:error] = @dojo.errors.full_messages
+          redirect_to :back
+        end
+    end
 
-  private
-  def dojo_params
-    param.require(:dojo).permit(:branch, :street, :city, :state, :action)
-  end
+    def show
+        @dojo = Dojo.find(params[:id])
+    end
 
+    def edit
+        @dojo = Dojo.find(params[:id])
+    end
+
+    def update
+        @dojo = Dojo.find(params[:id])
+
+        if @dojo.updated(dojo_params)
+            redirect_to root_path, notice: "You have succcessfully updated a Dojo!"
+
+        else
+            flash[:errors] = @dojo.errors.full_messages
+            redirect_to :back
+        end
+
+    def destroy
+        Dojo.find(params[:id]).destroy
+        redirect_to :root
+    end
+
+    private
+    def dojo_params
+        param.require(:dojo).permit(:branch, :street, :city, :state)
+    end
 end

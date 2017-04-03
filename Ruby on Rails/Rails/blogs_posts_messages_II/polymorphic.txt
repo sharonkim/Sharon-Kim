@@ -1,0 +1,34 @@
+rails g model Comment content commentable:references{polymorphic}
+
+# Added to Blog, Message, Post, and User models
+has_many :comments, as :commentable
+
+# Added to Users
+Comment.create(content:"Here's the first comment.", commentable:User.first)
+Comment.create(content:"This is another comment.", commentable:User.second)
+Comment.create(content:"Aaaaand, another one.", commentable:User.last)
+
+# Added to Blogs
+Comment.create(content:"Hey look, a blog comment.", commentable:Blog.last)
+Comment.create(content:"Blog comments are fuuun!", commentable:Blog.second)
+Comment.create(content:"Is this another comment??", commentable:Blog.first)
+
+# Added to Posts
+Comment.create(content:"Post comments are fun, too!", commentable:Post.second)
+Comment.create(content:"Commmmmmennnnnt.", commentable:Post.first)
+Comment.create(content:"Comment, comment, comment.", commentable:Post.last)
+
+# Added to Messages
+Comment.create(content:"Errrrrmmmmm...",commentable:Message.first)
+Comment.create(content:"What would you do if I called you fish?",commentable:Message.last)
+Comment.create(content:"Last comment for now.",commentable:Message.second)
+
+# Comment updates
+Comment.first.update(content:"I changed my mind.")
+Comment.second.update(content:"I like rainbows.")
+Comment.last.update(content:"hi.")
+
+# Delete comments
+Comment.last.destroy
+Comment.second.destroy
+Comment.first.destroy

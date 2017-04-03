@@ -1,28 +1,36 @@
-<h1>Listing <%= @count %> Dojos</h1>
+<h1>Listing <%= pluralize(@dojo.count), "Dojo" %></h1>
+
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
 <table>
-  <thead>
-    <tr>
-      <th>Coding Dojo Branch</th>
-      <th>Street</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Actions</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>Coding Dojo Branch</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Actions</th>
+        </tr>
   </thead>
   <tbody>
+
     <% @dojos.each do |dojo| %>
-      <tr>
-        <td><%= dojo.branch %></td>
-        <td><%= dojo.street %></td>
-        <td><%= dojo.city %></td>
-        <td><%= dojo.state %></td>
-        <td>
-          <a href="/dojos/<%= dojo.id %>" data-method="show">Show | </a>
-          <a href="/dojos/<%= dojo.id %>" data-method="edit">Edit | </a>
-          <a href="/dojos/<%= dojo.id %>" data-method="delete">Destroy</a></td>
-      </tr>
-    <% end %>
-  </tbody>
+
+        <tr>
+            <td><%= dojo.branch %></td>
+            <td><%= dojo.street %></td>
+            <td><%= dojo.city %></td>
+            <td><%= dojo.state %></td>
+            <td>
+                <%= link_to "Show", dojo %>
+                <%= link_to "Edit", edit_dojo_path(dojo) %>
+                <%= link_to "Delete", dojo, data: { method: :delete, confirm: "Are you sure you want to delete this item?"} %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
 
-<a href="/dojos/new">New Dojo</a>
+<%= link_to "New Dojo", new_dojo_path %>

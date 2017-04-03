@@ -22,6 +22,6 @@ div.left, div.right {
 }
 
 input {
-    display: block;
+    display: inline-block;
     margin: 10px;
 }

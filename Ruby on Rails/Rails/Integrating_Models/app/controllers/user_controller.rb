@@ -8,7 +8,7 @@ class UserController < ApplicationController
 
   def create
       @user = User.create(name:params[:name])
-      redirect_to '/users'
+      redirect_to root_url
   end
 
   def show
@@ -21,7 +21,7 @@ class UserController < ApplicationController
 
   def update
       @user = User.find(params[:id]).update(name:params[:name])
-      redirect_to '/users'
+      redirect_to root_path
   end
 
   def total
