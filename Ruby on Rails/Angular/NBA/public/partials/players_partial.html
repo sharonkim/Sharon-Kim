@@ -1,0 +1,9 @@
+<div>
+    <h1>NBA Players</h1>
+    <ul>
+        <li ng-repeat="player in players">{{player.first_name}} {{ player.last_name }}</li>
+    </ul>
+    <p>First Name: &emsp; <input ng-model="newPlayer.player.first_name" type="text"></p>
+    <p>Last Name: &emsp; <input ng-model="newPlayer.player.last_name" type="text"></p>
+   <button ng-click="createPlayer(newPlayer)">Create Player</button>
+</div>

@@ -1,0 +1,14 @@
+<!-- <div ng-app="" ng-init="players = [{name: 'Kobe Bryant', team: 'Lakers'},
+                                   {name: 'Derrick Rose', team: 'Bulls'},
+                                   {name: 'Kevin Durant', team: 'Thunder'},
+                                   {name: 'Tim Duncan', team: 'Spurs'}]">
+    <h1>Is Angular Working??</h1>
+    <ul>
+        <li ng-repeat="player in players">{{ player.name }} - {{ player.team }}</li>
+    </ul>
+</div> -->
+<div ng-app="nbaApp">
+    <h1>NBA Information:</h1>
+    <a href="#/players">Awesome Players</a> | <a href="#/teams">Teams</a>
+    <div ng-view=""></div>
+</div>
