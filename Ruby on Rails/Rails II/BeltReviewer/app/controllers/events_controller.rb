@@ -39,10 +39,11 @@ class EventsController < ApplicationController
     def update
         event = Event.find(params[:id])
         if event.update(event_params)
-            redirect_to "/events/#{@event.id}"
+            redirect_to "/events/#{ @event.id }"
         else
             flash[:errors] = event.errors.full_messages
             redirect_to :back
+		end
     end
 
     private
@@ -54,6 +55,7 @@ class EventsController < ApplicationController
             user_id = params[:id].to_i
 
             if user_id != session[:user_id]
-                redirect_to "/events"
+                redirect_to root_path
+			end
         end
 end
