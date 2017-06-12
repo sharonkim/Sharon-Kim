@@ -1,0 +1,39 @@
+<table class="table table-striped">
+    <thead>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>State</th>
+        <th>Host</th>
+        <th>Action/Status</th>
+    </thead>
+    <tbody>
+        <% if @events %>
+            <% @events.each do |event| %>
+                <% if event.state != current_user.state %>
+                    <tr>
+                        <td>
+                            <a href="/events/<%= event.id %>/show"><%= event.name %></a>
+                        </td>
+                        <td><%= event.date %></td>
+                        <td><%= event.location %></td>
+                        <td><%= event.state %></td>
+                        <td><%= event.user.first_name %></td>
+                            <% if current_user.id == event.user_id %>
+                                <td>
+                                    <form action="/events/<%= event.id %>/join" method="post">
+                                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                                        <input type="hidden" name="event[current_user_id]" value="<%= current_user.id %>">
+                                        <a href="/events/<%= event.id %>/join %>">Join</a>
+                                    </form>
+                                        <a href="/events/<%= event.id %>/edit">Edit</a> &emsp14; <a href="/events/<%= event.id %>" data-method="delete">Delete</a>
+                            <% elsif current_user.attending.exists?(event.id) %> Joining
+                                    <a href="/participants/<%= event.id %>/destroy">Cancel</a>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>

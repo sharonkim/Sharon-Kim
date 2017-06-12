@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Products Appp</title>
+	</head>
+	<body>
+		<h1>Trader's Store</h1>
+		<h3>Product Listing:</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Brand</th>
+					<th>ProductName</th>
+					<th>Price</th>
+					<th>Date Added</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				{% for each in products %}
+
+				<tr>
+					<td>{{ each.brand }}</td>
+					td {{ each.name }}
+					<td>{{ each.price | floatformat: 2 }}</tr>
+					<td>{{  each.date_added | date: 'F. d. Y' }}</td>
+					<td>
+						<form action="{% url 'delete' id = each.id %}" method="post">
+							{% csrf _token %}
+						<input type="submit" value="Delete">
+						</form>
+						<a href="/edit{{ each.id }}">Edit</a>
+					</td>
+				<tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<h3>Add a Produect</h3>
+		<form action="/add_product" method="post">
+			{% csrf_token %}
+
+			Brand: ++; <select name="brand_name">
+
+				{% for each in brands %}
+					<option value="{{ each.brand_name }}">{{ each.brand_name }}</option>
+				{% endfor %}
+
+			</select>
+
+			Product Name:
+
+		</form>
+	</body>
+</html>

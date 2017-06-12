@@ -1,4 +1,4 @@
-def log_in email: "oscar@gmail.com", password: "password"
+def log_in email: "eazy-e@nwa.com", password: "nwa4life"
 	visit '/sessions/new' unless current_path == '/sessions/new'
 	fill_in 'Email', with: email
 	fill_in 'Password', with: password

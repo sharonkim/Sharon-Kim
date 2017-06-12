@@ -1,59 +1,51 @@
 class EventsController < ApplicationController
-    before_action :require_login, only: [:edit, :update, :destroy]
-
     def index
-        user = User.find(current_user.id)
-        @local_events = Event.where(state: user.state)
-        @other_events = Event.where.not(state: user.state)
-    end
-
-    def show
-        event = Event.find(params[:id])
-        user = event.users
-        comments = event.comments
+        @events = Event.all
+        @local_events = Event.where( current_user.state )
+        @other_events = Event.where.not( current_user.state )
+        @event = Event.new()
+        @event = Event.new( session[ :event ] ) if flash[ :errors ] != nil && session[ :event ] != nil
     end
 
     def create
-        event = Event.create(event_params)
+        event = Event.new( event_params )
 
-        if event.save
-            redirect_to "/events"
-        else
+       if event.user == current_user
+		   event.save
+           redirect_to events_show_path, id: event.id
+       else
            flash[:errors] = event.errors.full_messages
-           redirect_to :back
-       end
+           session[ :event ] = event
+           redirect_to events_index_path
+        end
     end
 
-    def destroy
-        event = Event.find(params[:id])
-        event.destroy if event.user == current_user
-        redirect_to "/events"
-    end
-
-    def edit
-        event = Event.find(params[:id])
-        event.destroy if event.user == current_user
-        redirect_to "/events"
-    end
+	def show
+		@event = Event.find( params[ :id ] )
+		@event = Event.new( session[ :event ] ) if flash [ :errors ] != nil && session[ :event ] != nil
+		@comments = @event.comments.order( created_at: :desc )
+	end
 
     def update
-        event = Event.find(params[:id])
-        if event.update(event_params)
-            redirect_to "/events/#{@event.id}"
-        else
+        event = Event.find( params[ :id ] )
+
+        if event.update( event_params )
+			event.save
+		else
             flash[:errors] = event.errors.full_messages
-            redirect_to :back
+            session[ :event ] = event
+        end
+            redirect_to events_show_path
     end
+
+	def destroy
+		event = Event.find( params[ :id ] )
+		event.destroy if current_user == event.user
+		redirect_to events_index_path
+	end
 
     private
         def event_params
-            params.require(:event).permit(:name, :date, :location, :state).merge(user: current_user)
-        end
-
-        def require_login
-            user_id = params[:id].to_i
-
-            if user_id != session[:user_id]
-                redirect_to "/events"
+            params.require( :event ).permit( :current_user, :name, :date, :location, :state )
         end
 end

@@ -1,13 +1,22 @@
 class ParticipantsController < ApplicationController
-    def create
-       Participant.create(participant_params)
-        redirect_to "/events"
+	def create
+        participant = Participant.new
+        event = Event.find_by( :event_id )
+        participant.event = @event
+        participant.user = current_user
+
+        if participant
+			participant.save
+		else
+            flash[ :errors ] = participant.errors.full_messages
+        end
+		redirect_to events_index_path
     end
 
     def destroy
-        participant = Participant.where(event_id: params[:id], user_id: session[:user_id])
-        participant.first.destroy if session[:user_id] == participant[0].user_id
-        redirect_to "/events"
+        event = Event.find_by( :event_id )
+        participant = Participant.destroy.where(participant_params)
+        redirect_to events_index_path
     end
 
     private

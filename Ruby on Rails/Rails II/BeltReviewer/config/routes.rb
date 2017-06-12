@@ -1,29 +1,32 @@
 Rails.application.routes.draw do
-    root 'sessions#new'
-    get 'sessions/new'
-    post 'sessions' => 'sessions#create'
-    delete 'sessions/:id' => 'sessions#destroy'
+    root "sessions#index"
 
-    get 'users/new'
-    get 'users/:id' => 'users#show', as: 'users_show'
-    get 'users/:id/edit' => 'users#edit', as: 'users_edit'
-    post 'users' => 'users#create'
-    post 'users/login' => 'users#login'
-    patch 'users/:id' => 'users#update'
-    delete 'users/:id' => 'users#logout'
+### Sessions ###
+    get "sessions/index"
+    post "sessions/create" => "sessions#create"
+    post "login" => "sessions#create"
+    delete "logout" => "sessions#destroy"
 
-    get 'events' => 'events#index'
-    get 'events/:id/edit' => 'events#edit'
-    get 'events/:id/join' => 'events#join'
-    get 'events/:id/cancel' => 'events#cancel'
-    post 'events' => 'events#create'
-    post 'events/:id/comments' => 'events#comment'
-    patch 'events/:id' => 'events#update'
-    delete 'events/:id' => 'events#destroy'
+### Users ###
+    get "users" => "users#index"
+    post "users/create" => "users#create"
+    get "users/:id/edit" => "users#edit", as: "users_edit"
+    patch "users/:id/update" => "users#update", as: "users_update"
+    delete "users/:id" => "s#destroy"
 
-    resources :sessions, only: [:new, :create, :destroy]
-    resources :users
-    resources :comments, only: [:create, :destroy]
+### Events ###
+    get "events" => "events#index", as: "events_index"
+    post "events/create" => "events#create"
+    get "events/:id/show" => "events#show", as: "events_show"
+    patch "events/:id/update" => "events#update"
+    delete "events/:id" => "events#destroy"
+
+### Participants ###
+    post "events/:event_id/participants/create" => "participants#create"
+    delete "participants/:participant_id/destroy" => "participants#destroy"
+
+### Comments ###
+    post "events/:event_id/comments/create" => "comments#create"
 
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,24 +1,3 @@
-# README
+This project is an app called DojoSecrets.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It starts with a simple login and registration with password encryption. Once the user has been authenticated, he/she can post their secret anonymously.  The user can view and like other users' posted secrets, but are restricted from visiting another user's personal page.

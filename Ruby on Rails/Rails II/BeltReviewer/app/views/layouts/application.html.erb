@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BeltReviewer</title>
+    <title>Belt Reviewer</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" rel="stylesheet" />
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+	<% if flash[:errors] %>
+	    <% flash[:errors].each do |error| %>
+	        <p class="bg-danger"><%= error %></p>
+	    <% end %>
+	<% end %>
+
+	<% if current_user %>
+		<a href="/events">Event Dashboard</a> &emsp14;
+		<a href="/users/<%= current_user.id %>/edit">Edit My Profile</a> &emsp14;
+		<a href="/logout" data-method="delete">Logout</a>
+	<% end %>
     <%= yield %>
   </body>
 </html>
