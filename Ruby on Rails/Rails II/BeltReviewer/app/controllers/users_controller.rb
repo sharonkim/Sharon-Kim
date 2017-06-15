@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    def index
+    def new
         @user = User.new
         @user = User.new( session[ :user ] ) if flash[ :errors ] != nil && session[ :user ] != nil
     end

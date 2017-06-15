@@ -16,24 +16,24 @@ class EventsController < ApplicationController
     def create
         event = Event.create(event_params)
 
-        if event.save
-            redirect_to "/events"
+        if event.valid?
+			event.save
         else
            flash[:errors] = event.errors.full_messages
-           redirect_to :back
        end
+	   redirect_to events_index_path
     end
 
     def destroy
         event = Event.find(params[:id])
         event.destroy if event.user == current_user
-        redirect_to "/events"
+        redirect_to events_index_path
     end
 
     def edit
         event = Event.find(params[:id])
         event.destroy if event.user == current_user
-        redirect_to "/events"
+        redirect_to events_index_path
     end
 
     def update
@@ -42,7 +42,7 @@ class EventsController < ApplicationController
             redirect_to "/events/#{ @event.id }"
         else
             flash[:errors] = event.errors.full_messages
-            redirect_to :back
+            redirect_to events_index_path
 		end
     end
 

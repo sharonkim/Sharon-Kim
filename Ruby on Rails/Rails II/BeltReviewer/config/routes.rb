@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-    root 'sessions#new'
-    get 'sessions/new'
+    root 'sessions#index'
+    get 'sessions/index'
     post 'sessions' => 'sessions#create'
     delete 'sessions/:id' => 'sessions#destroy'
 
@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     get 'users/:id' => 'users#show', as: 'users_show'
     get 'users/:id/edit' => 'users#edit', as: 'users_edit'
     post 'users' => 'users#create'
-    post 'users/login' => 'users#login'
     patch 'users/:id' => 'users#update'
     delete 'users/:id' => 'users#logout'
 

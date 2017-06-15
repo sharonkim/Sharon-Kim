@@ -5,13 +5,13 @@ class SessionsController < ApplicationController
     end
 
     def create
-        @user = User.find_by_email( params[:email] ).try( :authenticate, params[ :password ] )
+        user = User.find_by_email( params[ :email ] ).try( :authenticate, params[ :password ] )
 
-        if @user == nil
-            flash[:errors] = ["Invalid Email or Password. Please try again."]
+        if user == nil
+            flash[ :errors ] = ["Invalid Email or Password. Please try again."]
             redirect_to root_path
         else
-            session[ :user_id ] = @user.id
+            session[ :user_id ] = user.id
             redirect_to events_index_path
         end
     end
